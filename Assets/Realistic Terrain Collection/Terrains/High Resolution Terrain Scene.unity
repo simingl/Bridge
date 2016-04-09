@@ -87,6 +87,60 @@ NavMeshSettings:
     cellSize: .166666672
     manualCellSize: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &34342996
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 400000, guid: 6a539f2feb211d8468a0403e6ab42d0a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 480.399994
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 6a539f2feb211d8468a0403e6ab42d0a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 152.199997
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 6a539f2feb211d8468a0403e6ab42d0a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1331.09998
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 6a539f2feb211d8468a0403e6ab42d0a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 6a539f2feb211d8468a0403e6ab42d0a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 6a539f2feb211d8468a0403e6ab42d0a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 6a539f2feb211d8468a0403e6ab42d0a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 6a539f2feb211d8468a0403e6ab42d0a, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 6a539f2feb211d8468a0403e6ab42d0a, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 6a539f2feb211d8468a0403e6ab42d0a, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 6a539f2feb211d8468a0403e6ab42d0a, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 5
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 6a539f2feb211d8468a0403e6ab42d0a, type: 3}
+  m_IsPrefabParent: 0
 --- !u!1 &76840802
 GameObject:
   m_ObjectHideFlags: 0
@@ -172,8 +226,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 76840802}
-  m_LocalRotation: {x: -.0193896871, y: .969924569, z: -.0824094564, w: -.228208438}
-  m_LocalPosition: {x: -2872, y: 3075, z: 9911.09961}
+  m_LocalRotation: {x: -.108682126, y: .798826158, z: -.151818797, w: -.57185322}
+  m_LocalPosition: {x: -22642.3203, y: 8774.87109, z: -4406.02686}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 780412190}
@@ -623,62 +677,50 @@ Transform:
   m_Children: []
   m_Father: {fileID: 780412190}
   m_RootOrder: 2
---- !u!1 &1108219448
+--- !u!1 &1089109890
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   serializedVersion: 4
   m_Component:
-  - 4: {fileID: 1108219449}
-  - 218: {fileID: 1108219451}
-  - 154: {fileID: 1108219450}
+  - 4: {fileID: 1089109893}
+  - 218: {fileID: 1089109892}
+  - 154: {fileID: 1089109891}
   m_Layer: 0
-  m_Name: Terrain5
+  m_Name: Terrain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
---- !u!4 &1108219449
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1108219448}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12000, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1958912796}
-  m_RootOrder: 0
---- !u!154 &1108219450
+--- !u!154 &1089109891
 TerrainCollider:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1108219448}
+  m_GameObject: {fileID: 1089109890}
   m_Material: {fileID: 0}
   m_Enabled: 1
-  m_TerrainData: {fileID: 15600000, guid: 2107c9f77daae864ea085c4b96c8f849, type: 2}
+  m_TerrainData: {fileID: 15600000, guid: 7ca13af0747858b4e97f697cc63d4fe5, type: 2}
   m_EnableTreeColliders: 1
---- !u!218 &1108219451
+--- !u!218 &1089109892
 Terrain:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1108219448}
+  m_GameObject: {fileID: 1089109890}
   m_Enabled: 1
   serializedVersion: 3
-  m_TerrainData: {fileID: 15600000, guid: 2107c9f77daae864ea085c4b96c8f849, type: 2}
-  m_TreeDistance: 2000
+  m_TerrainData: {fileID: 15600000, guid: 7ca13af0747858b4e97f697cc63d4fe5, type: 2}
+  m_TreeDistance: 5000
   m_TreeBillboardDistance: 50
   m_TreeCrossFadeLength: 5
   m_TreeMaximumFullLODCount: 50
   m_DetailObjectDistance: 80
   m_DetailObjectDensity: 1
-  m_HeightmapPixelError: 1
-  m_SplatMapDistance: 2000
+  m_HeightmapPixelError: 5
+  m_SplatMapDistance: 1000
   m_HeightmapMaximumLOD: 0
   m_CastShadows: 1
   m_DrawHeightmap: 1
@@ -693,31 +735,15 @@ Terrain:
   m_BakeLightProbesForTrees: 1
   m_ScaleInLightmap: .0102399997
   m_LightmapParameters: {fileID: 15203, guid: 0000000000000000f000000000000000, type: 0}
---- !u!1 &1958912795
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1958912796}
-  m_Layer: 0
-  m_Name: Terrains
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1958912796
+--- !u!4 &1089109893
 Transform:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1958912795}
+  m_GameObject: {fileID: 1089109890}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2284.35352, y: -5968.95312, z: -1130.95776}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1108219449}
+  m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 2
