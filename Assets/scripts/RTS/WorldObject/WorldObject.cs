@@ -26,7 +26,7 @@ public class WorldObject : MonoBehaviour {
 
 
     protected virtual void Awake() {
-		currentStatus = STATUS.LANDED;
+		currentStatus = STATUS.MOVING;
 		currentTask = TASK.NULL;
 
 		selectionBounds = ResourceManager.InvalidBounds;

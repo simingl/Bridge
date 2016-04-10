@@ -4,6 +4,7 @@ using UnityEngine.EventSystems;
 using System.Collections;
 using System.Collections.Generic;
 using RTS;
+using ProgressBar;
 
 public class HUD : MonoBehaviour {
 	public GUISkin resourceSkin, ordersSkin, selectBoxSkin, selectionBarSkin,selectBtnSkin;
@@ -12,7 +13,7 @@ public class HUD : MonoBehaviour {
 	public Texture drone_cam_front, drone_cam_down;
 	public Button cellBtn; 
 	private const int RESOURCE_BAR_HEIGHT = 30;
-	private const int LINE_HEIGHT = 20;
+	private const int LINE_HEIGHT = 30;
 
 	private static int SELECT_BAR_BTN_HEIGHT = 30, SELECT_BAR_BTN_WIDTH = 60;
 	private static int ACTION_BTN_WIDTH = 76 + 16, ACTION_BTN_HEIGHT = 30;
@@ -55,21 +56,22 @@ public class HUD : MonoBehaviour {
 
 	private Camera camera_minimap;
 
+
 	void Start () {
 		int WIDTH = Screen.width;
 		int HEIGHT = Screen.height;
         initialCams = true;
 
-        MINIMAP_WIDTH =(int)(0.2*WIDTH);
+        MINIMAP_WIDTH =(int)(0.4*WIDTH);
 		MINIMAP_HEIGHT = (int)(0.33 * HEIGHT);
 		SELECTION_BAR_HEIGHT = (int)(0.16 * HEIGHT);
 		SELECTION_BAR_WIDTH = (int)(0.29*WIDTH);
-		ORDERS_BAR_WIDTH = (int)(0.131*WIDTH);
-		ORDERS_BAR_HEIGHT = (int)(0.16*HEIGHT);
-		INFO_BAR_HEIGHT = SELECTION_BAR_HEIGHT;
-		INFO_BAR_WIDHT = (int)(0.18*WIDTH) ;
+		ORDERS_BAR_WIDTH = (int)(0.151*WIDTH);
+		ORDERS_BAR_HEIGHT = (int)(0.2*HEIGHT);
+		INFO_BAR_HEIGHT = ORDERS_BAR_HEIGHT;
+		INFO_BAR_WIDHT = (int)(0.20*WIDTH) ;
 
-		player = transform.root.GetComponent< Player >();
+		player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
 		//sun = GameObject.FindGameObjectWithTag ("Sun");
 
 		RESOURCE_DAYNIGHT_TOGGLE_WIDTH = (int)(0.3*WIDTH);;
@@ -82,26 +84,27 @@ public class HUD : MonoBehaviour {
 		RESOURCE_STATUS_WIDTH = (int)(0.1*WIDTH);
 
 		ResourceManager.StoreSelectBoxItems(selectBoxSkin);
-        
     }
-	
-	void OnGUI () {
-		if(player && player.human) {
+
+
+    void OnGUI () {
+		if(true || player && player.human) {
 			if(ConfigManager.getInstance ().getHUDShowDroneSelectionBar()){
-				DrawSelectionBar();
+				//DrawSelectionBar();
 			}
 			if(ConfigManager.getInstance ().getHUDShowOrderBar()){
 				DrawOrdersBar();
 			}
 			if(ConfigManager.getInstance ().getHUDShowResourceBar()){
-				DrawResourceBar();
+				//DrawResourceBar();
 			}
-			if(ConfigManager.getInstance ().getHUDShowMessageBar()){
-				DrawInfoBar();
-			}
+            if (ConfigManager.getInstance().getHUDShowMessageBar())
+            {
+                DrawInfoBar();
+            }
 
-			DrawPIPBar();
-			DrawMouseDragSelectionBox ();
+			//DrawPIPBar();
+			//DrawMouseDragSelectionBox ();
 		}
 	}
 
@@ -116,12 +119,13 @@ public class HUD : MonoBehaviour {
 		int offset = 0;
 
 		offset += RESOURCE_DAYNIGHT_TOGGLE_WIDTH;
-		if (player.getSelectedObjects().Count >0) {
+		if (true||player.getSelectedObjects().Count >0) {
+
 			GUI.color = new Color(1.0f, 1.0f, 1.0f, 0.9f);
 			GUI.Box(new Rect(0,0,Screen.width, RESOURCE_BAR_HEIGHT),"");
 
-			WorldObject obj = player.getSelectedObjects()[0];
-			string name = obj.objectName; 
+            WorldObject obj = player.GetComponentInParent<Drone>();
+            string name = obj.objectName; 
 			string status = "Status: ";
 			string location = "Location: (" + obj.transform.position.x.ToString("0.0") + ", " + obj.transform.position.z.ToString("0.0") + ")";
 			string height = "Height: "+ obj.transform.position.y.ToString("0.0");
@@ -168,7 +172,7 @@ public class HUD : MonoBehaviour {
 			//DrawOutline(new Rect(offset,5,Screen.width,ORDERS_BAR_HEIGHT), cellinfo, this.resourceSkin.GetStyle("large"), Color.yellow, Color.green);
 			//DrawOutline(new Rect(offset,5,Screen.width,ORDERS_BAR_HEIGHT), waterinfo, this.resourceSkin.GetStyle("large"), Color.yellow, Color.green);
 		}
-		dayNightToggle = GUI.Toggle(new Rect(5, 5, RESOURCE_DAYNIGHT_TOGGLE_WIDTH, RESOURCE_BAR_HEIGHT), dayNightToggle, "Day/Night");
+		//dayNightToggle = GUI.Toggle(new Rect(5, 5, RESOURCE_DAYNIGHT_TOGGLE_WIDTH, RESOURCE_BAR_HEIGHT), dayNightToggle, "Day/Night");
 		GUI.EndGroup();
 	}
 
@@ -222,39 +226,93 @@ public class HUD : MonoBehaviour {
         }
     }
 	private void DrawInfoBar(){
-        int offset = MINIMAP_WIDTH + SELECTION_BAR_WIDTH;
+        int offset_width = MINIMAP_WIDTH;
+        int offset_height = 0;
 
-        //GUI.color = Color.yellow;
         GUI.skin = ordersSkin;
         GUI.BeginGroup(new Rect(0, Screen.height - INFO_BAR_HEIGHT, Screen.width, INFO_BAR_HEIGHT));
-        GUI.Box(new Rect(MINIMAP_WIDTH + SELECTION_BAR_WIDTH, 0, INFO_BAR_WIDHT, INFO_BAR_HEIGHT), "");
+        GUI.Box(new Rect(MINIMAP_WIDTH, 0, INFO_BAR_WIDHT, INFO_BAR_HEIGHT), "");
+
+        WorldObject obj = player.GetComponentInParent<Drone>();
+        string name = obj.objectName;
+        string status = "Status: ";
+        string location = "Location: (" + obj.transform.position.x.ToString("0.0") + ", " + obj.transform.position.z.ToString("0.0") + ")";
+        string height = "Height: " + obj.transform.position.y.ToString("0.0");
+        string speed = "Speed: ";
+
+        float angle = 0.0F;
+        Vector3 axis = Vector3.zero;
+        obj.transform.rotation.ToAngleAxis(out angle, out axis);
+        string orient = "Orientation: " + angle.ToString("0.0") + "'";
+        string battery = "";
+        if (obj is Drone)
+        {
+            Drone unit = (Drone)obj;
+            battery += "Battery: " + (int)(unit.currentBattery) / 60 + " min " + ((int)unit.currentBattery) % 60 + " sec.";
+            status += unit.currentStatus;
+            speed += unit.speed.ToString("0.0");
+        }
+
+        //		GUI.Label(new Rect(offset,5 , Screen.width,ORDERS_BAR_HEIGHT), name);
+        //DrawOutline(new Rect(offset,5 , Screen.width,ORDERS_BAR_HEIGHT), name, this.resourceSkin.GetStyle("large"), Color.white, Color.black);
+        offset_width += 10;
+        offset_height += 5;
+
+        GUI.Label(new Rect(offset_width, offset_height, Screen.width, ORDERS_BAR_HEIGHT), location);
+        //DrawOutline(new Rect(offset,5 , Screen.width,ORDERS_BAR_HEIGHT), location, this.resourceSkin.GetStyle("large"), Color.white, Color.black);
+        //offset_width += RESOURCE_LOCATION_WIDTH;
+        offset_height += LINE_HEIGHT;
+
+        GUI.Label(new Rect(offset_width, offset_height, Screen.width, ORDERS_BAR_HEIGHT), height);
+        //DrawOutline(new Rect(offset,5 , Screen.width,ORDERS_BAR_HEIGHT), height, this.resourceSkin.GetStyle("large"), Color.white, Color.black);
+        
+        offset_height += LINE_HEIGHT;
+
+        GUI.Label(new Rect(offset_width, offset_height, Screen.width, ORDERS_BAR_HEIGHT), speed);
+        //DrawOutline(new Rect(offset,5 , Screen.width,ORDERS_BAR_HEIGHT), height, this.resourceSkin.GetStyle("large"), Color.white, Color.black);
+        
+        offset_height += LINE_HEIGHT;
+
+        GUI.Label(new Rect(offset_width, offset_height, Screen.width, ORDERS_BAR_HEIGHT), orient);
+        //DrawOutline(new Rect(offset,5 , Screen.width,ORDERS_BAR_HEIGHT), height, this.resourceSkin.GetStyle("large"), Color.white, Color.black);
+        
+        offset_height += LINE_HEIGHT;
+
+        GUI.Label(new Rect(offset_width, offset_height, Screen.width, ORDERS_BAR_HEIGHT), battery);
+        //DrawOutline(new Rect(offset,5 , Screen.width,ORDERS_BAR_HEIGHT), battery, this.resourceSkin.GetStyle("large"), Color.yellow, Color.green);
+        
+        offset_height += LINE_HEIGHT;
+
+        GUI.Label(new Rect(offset_width, offset_height, Screen.width, ORDERS_BAR_HEIGHT), status);
+
+        
         GUI.EndGroup();
 
 
     }
 
 	private void DrawOrdersBar() {
-        int offset = MINIMAP_WIDTH + SELECTION_BAR_WIDTH + INFO_BAR_WIDHT;
+        int offset = MINIMAP_WIDTH  + INFO_BAR_WIDHT;
 
         GUI.color = Color.white;
         GUI.skin = ordersSkin;
         GUI.BeginGroup(new Rect(0, Screen.height - ORDERS_BAR_HEIGHT, Screen.width * 0.8f, ORDERS_BAR_HEIGHT));
 
         int orderWidth = Screen.width;
-        if (player.isPIPActive())
-        {
-            orderWidth = ORDERS_BAR_WIDTH;
-        }
+        //if (player.isPIPActive())
+        //{
+        //    orderWidth = ORDERS_BAR_WIDTH;
+        //}
 
-        GUI.Box(new Rect(offset, 0, orderWidth, ORDERS_BAR_HEIGHT), "");
+        GUI.Box(new Rect(offset, 0, ORDERS_BAR_WIDTH, ORDERS_BAR_HEIGHT), "");
+
         GUI.EndGroup();
-
-        if (player.getSelectedObjects().Count > 0)
-        {
-            List<WorldObject> objs = player.getSelectedObjects();
-            for (int i = 0; i < 1; i++)
+        //if (player.getSelectedObjects().Count > 0)
+        //{
+        //List<WorldObject> objs = player.getSelectedObjects();
+        for (int i = 0; i < 1; i++)
             {
-                WorldObject obj = objs[i];
+                WorldObject obj = player.GetComponentInParent<Drone>();
                 string text = obj.objectName;
                 text += "  - loc: (" + obj.transform.position.x + ", " + obj.transform.position.z + "), H: " + obj.transform.position.y;
                 if (obj is Drone)
@@ -268,19 +326,20 @@ public class HUD : MonoBehaviour {
                     //unit.LoadCell();
                     unit.Land();
                 }
-                if (GUI.Button(new Rect(offset + ACTION_BTN_WIDTH + 5 + 5, Screen.height - ORDERS_BAR_HEIGHT + i * LINE_HEIGHT + 5, ACTION_BTN_WIDTH, ACTION_BTN_HEIGHT), "Take Off"))
+                if (GUI.Button(new Rect(offset + 5 , Screen.height - ORDERS_BAR_HEIGHT + i * LINE_HEIGHT + 5 + ACTION_BTN_HEIGHT +5, ACTION_BTN_WIDTH, ACTION_BTN_HEIGHT), "Take Off"))
                 {
                     Drone unit = (Drone)obj;
                     unit.TakeOff();
                 }
 
-                if (GUI.Button(new Rect(offset + 5, Screen.height - ORDERS_BAR_HEIGHT + i * LINE_HEIGHT + 5 + ACTION_BTN_HEIGHT, ACTION_BTN_WIDTH, ACTION_BTN_HEIGHT), "Recharge"))
+                if (GUI.Button(new Rect(offset + 5, Screen.height - ORDERS_BAR_HEIGHT + i * LINE_HEIGHT + 5 + ACTION_BTN_HEIGHT + 5+ ACTION_BTN_HEIGHT +5, ACTION_BTN_WIDTH, ACTION_BTN_HEIGHT), "Recharge"))
                 {
                     Drone unit = (Drone)obj;
                     unit.Recharge();
                 }
             }
-        }
+        
+        //}
     }
 
     public bool MouseInBounds() {

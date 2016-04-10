@@ -7,7 +7,7 @@ public class MapItem : MonoBehaviour {
 	private WorldObject worldObj;
 	public GameObject mapBounds;
 
-	private const int MINIMAP_LAYER = 8;
+	private const int MINIMAP_LAYER = 10;
 
 	private const string MAP_ITEM_NAME = "MiniMapIcon";
 	// Use this for initialization
@@ -30,7 +30,7 @@ public class MapItem : MonoBehaviour {
 			mapBounds.GetComponent<Collider> ().enabled = false;
 
 			mapBounds.transform.parent = transform;
-			mapBounds.transform.localScale = Vector3.one * 150;
+			mapBounds.transform.localScale = Vector3.one * 40;
 			mapBounds.transform.rotation = transform.rotation;
 
 			Renderer rend = mapBounds.GetComponent<Renderer>();
@@ -43,13 +43,13 @@ public class MapItem : MonoBehaviour {
 			//mapBounds.transform.RotateAround (mapBounds.transform.position, leftaxis, 90);
 			
 			mapBounds.transform.localPosition = new Vector3 (0, 0, 0);
-			
-			//Transform childtr = mapBounds.transform.GetChild (0);
-			//MeshRenderer rend_mapBounds = childtr.gameObject.GetComponent<MeshRenderer> ();
-			//rend_mapBounds.material.color = drone.color;
-			mapBounds.GetComponent<Renderer> ().material.color = drone.color;
 
-		} else if (worldObj is NPC) {
+            //Transform childtr = mapBounds.transform.GetChild (0);
+            //MeshRenderer rend_mapBounds = childtr.gameObject.GetComponent<MeshRenderer> ();
+            //rend_mapBounds.material.color = drone.color;
+            drone.color.a = 0.3f;
+			mapBounds.GetComponent<Renderer> ().material.color = drone.color;
+        } else if (worldObj is NPC) {
 			mapBounds = GameObject.CreatePrimitive (PrimitiveType.Cube);
 			mapBounds.layer = MINIMAP_LAYER;
 			mapBounds.GetComponent<Collider> ().enabled = false;

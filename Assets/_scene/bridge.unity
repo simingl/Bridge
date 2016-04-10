@@ -236,7 +236,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 4294966271
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -252,8 +252,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 76840802}
-  m_LocalRotation: {x: -0.10049688, y: 0.27848947, z: -0.054320373, w: 0.9536212}
-  m_LocalPosition: {x: -85.47772, y: 71.11172, z: 347.31262}
+  m_LocalRotation: {x: -0.05510848, y: 0.32445464, z: -0.07910228, w: 0.9409756}
+  m_LocalPosition: {x: -71.00969, y: 82.36594, z: 378.86792}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 931320760}
@@ -570,6 +570,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 445cd95981a53c84894d1a834c984f92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  smooth: 1.5
 --- !u!1 &128938322
 GameObject:
   m_ObjectHideFlags: 0
@@ -1291,7 +1292,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 520151659}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 13.2, z: 10.6}
+  m_LocalPosition: {x: -0.23, y: 0, z: 7.97}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2045896816}
@@ -1330,10 +1331,10 @@ Camera:
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0.019607844}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.8
+    x: 0.75
     y: 0
-    width: 0.2
-    height: 0.3
+    width: 0.25
+    height: 0.35
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -1342,7 +1343,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 4294966271
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -1744,8 +1745,9 @@ GameObject:
   m_PrefabInternal: {fileID: 0}
   serializedVersion: 4
   m_Component:
-  - 4: {fileID: 692358402}
+  - 224: {fileID: 692358402}
   - 114: {fileID: 692358403}
+  - 222: {fileID: 692358406}
   m_Layer: 0
   m_Name: HUD
   m_TagString: Untagged
@@ -1753,8 +1755,8 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &692358402
-Transform:
+--- !u!224 &692358402
+RectTransform:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
@@ -1766,6 +1768,11 @@ Transform:
   m_Father: {fileID: 888357522}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &692358403
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1789,6 +1796,12 @@ MonoBehaviour:
   cellBtn: {fileID: 0}
   dayNightToggle: 1
   selectionHighlight: {fileID: 2800000, guid: 55a30ef79052b754facdcd2a706bbdbf, type: 3}
+--- !u!222 &692358406
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 692358401}
 --- !u!1 &717558884
 GameObject:
   m_ObjectHideFlags: 0
@@ -2004,7 +2017,7 @@ GameObject:
   - 33: {fileID: 788310667}
   - 23: {fileID: 788310666}
   m_Layer: 9
-  m_Name: group_0.013
+  m_Name: group_top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3234,7 +3247,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 768
+    m_Bits: 1280
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -3391,6 +3404,8 @@ GameObject:
   - 64: {fileID: 2045896819}
   - 114: {fileID: 2045896821}
   - 114: {fileID: 2045896820}
+  - 114: {fileID: 2045896822}
+  - 114: {fileID: 2045896823}
   m_Layer: 9
   m_Name: drone
   m_TagString: Player
@@ -3405,8 +3420,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2045896815}
   m_LocalRotation: {x: 0, y: -0.48862126, z: 0, w: 0.872496}
-  m_LocalPosition: {x: -389.7, y: -47.4, z: 51.1}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalPosition: {x: -389.7, y: -39.12, z: 28.66}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_Children:
   - {fileID: 811415443}
   - {fileID: 520151660}
@@ -3419,7 +3434,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2045896815}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a264cdeff404c404997f767a9cb29749, type: 3}
   m_Name: 
@@ -3488,7 +3503,48 @@ MonoBehaviour:
   activeCamera: {fileID: 0}
   camMain: {fileID: 0}
   worldSimulationSpeedVar: 0
-  smooth: 1.5
+--- !u!114 &2045896822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2045896815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edd5e4ba6954a29488b353fa68e92ff4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drone_map: {fileID: 0}
+  mapBounds: {fileID: 0}
+--- !u!114 &2045896823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2045896815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 125d77a7d969529469648fd1d32ef637, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  scoreValue: 500
+  objectName: 
+  currentStatus: 0
+  currentTask: 0
+  cameraIcon: {fileID: 0}
+  color: {r: 0, g: 0, b: 0, a: 0}
+  speed: 0
+  moveSpeed: 10
+  rotateSpeed: 10
+  currentBattery: 100
+  batteryUsage: 0.1
+  sensingRange: 100
+  selectedCircle: {fileID: 0}
+  routePoints: {fileID: 0}
+  emptyGameObject: {fileID: 0}
+  droneNumber: 0
+  droneNumberText: {fileID: 0}
 --- !u!1 &2054500754
 GameObject:
   m_ObjectHideFlags: 0

@@ -43,8 +43,8 @@ public class Drone : WorldObject {
     private Image battery;
     private Canvas canvas;
 
-    public Slider batterySliderfabs;
-    private Slider batterySlider;
+    //public Slider batterySliderfabs;
+    //private Slider batterySlider;
 
     private Projector projector;
     private Camera camera_front, camera_down;
@@ -73,7 +73,7 @@ public class Drone : WorldObject {
 
     protected override void Awake() {
         base.Awake();
-        fire = transform.FindChild("fire").gameObject;
+        //fire = transform.FindChild("fire").gameObject;
         currentBattery = ResourceManager.DroneBatteryLife;
         rb = this.GetComponent<Rigidbody>();                
         this.canvas = GameObject.FindObjectOfType<Canvas>();
@@ -107,20 +107,20 @@ public class Drone : WorldObject {
         }
         
         //Create a battery bar from the prefab
-        batterySlider = (Slider)GameObject.Instantiate(batterySliderfabs, new Vector3(-10000f, -10000f, -10000f), transform.localRotation);
-        batterySlider.transform.SetParent(canvas.transform);
-        batterySlider.transform.parent = emptyGameObject.transform;
+        //batterySlider = (Slider)GameObject.Instantiate(batterySliderfabs, new Vector3(-10000f, -10000f, -10000f), transform.localRotation);
+        //batterySlider.transform.SetParent(canvas.transform);
+        //batterySlider.transform.parent = emptyGameObject.transform;
 
-        batterySlider.transform.localScale = Vector3.one;
-        batterySlider.gameObject.SetActive(false);
+        //batterySlider.transform.localScale = Vector3.one;
+        //batterySlider.gameObject.SetActive(false);
 
         //setup the destination mark
-        destinationMark = this.transform.FindChild("DestinationMark");
+        //destinationMark = this.transform.FindChild("DestinationMark");
 
-        this.camera_front = (Camera)(this.transform.FindChild("camera_1st_view").gameObject).GetComponent<Camera>();
-        this.camera_down = (Camera)(this.transform.FindChild("camera_hover_view").gameObject).GetComponent<Camera>();
+        this.camera_front = (Camera)(this.transform.FindChild("cam_1st").gameObject).GetComponent<Camera>();
+        //this.camera_down = (Camera)(this.transform.FindChild("camera_hover_view").gameObject).GetComponent<Camera>();
         this.camera_front.depth = PIP_DEPTH_DEACTIVE;
-        this.camera_down.depth = PIP_DEPTH_DEACTIVE;
+        //this.camera_down.depth = PIP_DEPTH_DEACTIVE;
     }
 
     public void FrontCameraBlur()
@@ -130,11 +130,11 @@ public class Drone : WorldObject {
 
     protected override void Start() {
         base.Start();
-        this.selectedCircle.SetActive(false);
-        this.droneNumberText.text = "No. " + this.droneNumber;
+        //this.selectedCircle.SetActive(false);
+        //this.droneNumberText.text = "No. " + this.droneNumber;
         transform.FindChild("mesh").FindChild("group_top").GetComponent<Renderer>().material.color = color;
-        droneNumberText.color = color;
-        transform.FindChild("arrow32").FindChild("Mesh_").GetComponent<Renderer>().material.color = color;
+        //droneNumberText.color = color;
+        //transform.FindChild("arrow32").FindChild("Mesh_").GetComponent<Renderer>().material.color = color;
         //hold routLinePoints prefab in an object;
         //		routLinePointsSelect = GameObject.FindGameObjectsWithTag("RouteLinePoint"); 	
 
@@ -142,8 +142,8 @@ public class Drone : WorldObject {
         this.setColor(color);
 
         //setup the line from object to the ground
-        lineRaycast = this.GetComponent<LineRenderer>();
-        lineRaycast.useWorldSpace = true;
+        //lineRaycast = this.GetComponent<LineRenderer>();
+        //lineRaycast.useWorldSpace = true;
         
 
         this.malFunction ();
@@ -151,14 +151,14 @@ public class Drone : WorldObject {
 
     protected override void Update() {
         base.Update();
-        if (this.isSelected() == true)
-        {
-            this.selectedCircle.SetActive(true);
-        }
-        else
-        {
-            this.selectedCircle.SetActive(false);
-        }
+        //if (this.isSelected() == true)
+        //{
+        //    this.selectedCircle.SetActive(true);
+        //}
+        //else
+        //{
+        //    this.selectedCircle.SetActive(false);
+        //}
             //select an object------
             //		if (Input.GetMouseButtonDown(0))
             //		{
@@ -186,16 +186,16 @@ public class Drone : WorldObject {
             if (this.currentStatus == STATUS.DEAD)
             return;
 
-        if (Input.GetMouseButtonUp(0) && !EventSystem.current.IsPointerOverGameObject() && HUD.selection.width * HUD.selection.height > 10) {
-            Vector3 camPos = Camera.main.WorldToScreenPoint(transform.position);
-            camPos.y = Screen.height - camPos.y;
-            if (HUD.selection.Contains(camPos)) {
-                this.player.addSelectedObject(this);
-            }
-            else {
+        //if (Input.GetMouseButtonUp(0) && !EventSystem.current.IsPointerOverGameObject() && HUD.selection.width * HUD.selection.height > 10) {
+        //    Vector3 camPos = Camera.main.WorldToScreenPoint(transform.position);
+        //    camPos.y = Screen.height - camPos.y;
+        //    if (HUD.selection.Contains(camPos)) {
+        //        this.player.addSelectedObject(this);
+        //    }
+        //    else {
         //        this.player.removeSelectedObject(this);   //remove if drone is not in the mouseDrag area;
-            }
-        }
+        //    }
+        //}
 
         this.HandleKeyboardControl();
         //this.drawRaycastLine ();
@@ -268,21 +268,21 @@ public class Drone : WorldObject {
 		//reset the width of the battery bar
 		Rect selectBox = WorkManager.CalculateSelectionBox(selectionBounds, playingArea);
 		float width_ratio = selectBox.width/50f;   //50 is the width of the slider defined in prefabs
-		batterySlider.transform.localScale = new Vector3(width_ratio+0.1f, 1,1);
-		batterySlider.value = this.currentBattery;
-		batterySlider.gameObject.SetActive (player.isSelected(this));
+		//batterySlider.transform.localScale = new Vector3(width_ratio+0.1f, 1,1);
+		//batterySlider.value = this.currentBattery;
+		//batterySlider.gameObject.SetActive (player.isSelected(this));
 
-		if (base.isSelected() && player.GetComponent<ChangePOV> ().activeCamera == null) {
-			if(batterySlider.gameObject.active == false){
-				batterySlider.gameObject.SetActive (true);
-			}
-		} else {
-			batterySlider.gameObject.SetActive (false);
-		}
+		//if (base.isSelected() && player.GetComponent<ChangePOV> ().activeCamera == null) {
+		//	if(batterySlider.gameObject.active == false){
+		//		batterySlider.gameObject.SetActive (true);
+		//	}
+		//} else {
+		//	batterySlider.gameObject.SetActive (false);
+		//}
 
-		if (this.camera_front.depth == PIP_DEPTH_ACTIVE || this.camera_down.depth == PIP_DEPTH_ACTIVE) {
-			DrawCameraIcon ();
-		}
+		//if (this.camera_front.depth == PIP_DEPTH_ACTIVE || this.camera_down.depth == PIP_DEPTH_ACTIVE) {
+		//	DrawCameraIcon ();
+		//}
 	}
 
     public override void MouseClick(GameObject hitObject, Vector3 hitPoint, Player controller)
@@ -393,10 +393,10 @@ public class Drone : WorldObject {
 
 	private void HandleKeyboardControl(){
 		Vector3 leftaxis = transform.TransformDirection(Vector3.up);
-		if (player.isSelected (this)) {
+		//if (player.isSelected (this)) {
 			transform.RotateAround (transform.position, leftaxis, Input.GetAxis ("Horizontal") * 0.5f);
 			speed += Input.GetAxis ("Vertical") * acceleration * Time.deltaTime*10;
-		}
+		//}
 		
 		speed = Mathf.Clamp (speed, minSpeed, maxSpeed);
 
@@ -408,10 +408,10 @@ public class Drone : WorldObject {
 			Vector3 newPos = transform.up * jump * 0.01f;
 			transform.position += newPos;
 			
-			newPos.x = transform.position.x;
-			newPos.y = Mathf.Clamp(rb.transform.position.y, ResourceManager.MaxBottom,  ResourceManager.MaxTop);
-			newPos.z = transform.position.z;
-			transform.position = newPos;
+			//newPos.x = transform.position.x;
+			//newPos.y = Mathf.Clamp(rb.transform.position.y, ResourceManager.MaxBottom,  ResourceManager.MaxTop);
+			//newPos.z = transform.position.z;
+			//transform.position = newPos;
 		}
 
 		//move forward
@@ -482,7 +482,7 @@ public class Drone : WorldObject {
 
 	private void drawBatteryBar(Rect rect){
 		Vector3 pos = Camera.main.WorldToScreenPoint (transform.position);
-		batterySlider.transform.position = new Vector3 (pos.x,pos.y+rect.height/2,0);
+		//batterySlider.transform.position = new Vector3 (pos.x,pos.y+rect.height/2,0);
 	}
 
 	private void CalculateBattery(){

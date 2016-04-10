@@ -19,7 +19,8 @@ public class Player : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		hud = GetComponentInChildren< HUD >();
+        hud = transform.parent.GetComponentInChildren<HUD>();
+
 		selectedObjects = new List<WorldObject> ();
 		audioManager = this.GetComponent<AudioManager> ();
 		changePOV = this.GetComponent<ChangePOV> ();
