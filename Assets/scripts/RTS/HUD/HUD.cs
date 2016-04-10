@@ -44,7 +44,7 @@ public class HUD : MonoBehaviour {
 
 	private CursorState activeCursorState;
 
-	private GameObject sun;
+	//private GameObject sun;
     private bool initialCams;
 	//For selection rendering
 	public Texture2D selectionHighlight = null;
@@ -70,7 +70,7 @@ public class HUD : MonoBehaviour {
 		INFO_BAR_WIDHT = (int)(0.18*WIDTH) ;
 
 		player = transform.root.GetComponent< Player >();
-		sun = GameObject.FindGameObjectWithTag ("Sun");
+		//sun = GameObject.FindGameObjectWithTag ("Sun");
 
 		RESOURCE_DAYNIGHT_TOGGLE_WIDTH = (int)(0.3*WIDTH);;
 		RESOURCE_NAME_WIDTH = (int)(0.1*WIDTH);;
@@ -101,17 +101,12 @@ public class HUD : MonoBehaviour {
 			}
 
 			DrawPIPBar();
-			SwitchDayNight();
 			DrawMouseDragSelectionBox ();
 		}
 	}
 
 	void Update(){
 		MouseDragSelection();
-        if(initialCams)
-        {
-            ShowAllCameras();
-        }
 	}
 
 	private void DrawResourceBar() {
@@ -284,53 +279,7 @@ public class HUD : MonoBehaviour {
                     Drone unit = (Drone)obj;
                     unit.Recharge();
                 }
-
-
-
-                //				if(GUI.Button (new Rect(offset + ACTION_BTN_WIDTH+5+5,Screen.height - ORDERS_BAR_HEIGHT + i*LINE_HEIGHT +5+ACTION_BTN_HEIGHT,ACTION_BTN_WIDTH,ACTION_BTN_HEIGHT), "Drop Water")){
-                //					Drone unit = (Drone)obj;
-                //					unit.DropWater();
-                //				}
             }
-        }
-
-        //show all cameras-------------
-        if (GUI.Button(new Rect(offset + 5, Screen.height - ORDERS_BAR_HEIGHT + 0 * LINE_HEIGHT + 5 + ACTION_BTN_HEIGHT * 2, ACTION_BTN_WIDTH, ACTION_BTN_HEIGHT), "Show All Cam"))
-        {
-            ShowAllCameras();
-        }
-        //show all cameras-------------
-
-        //clear all cameras-------------
-        if (GUI.Button(new Rect(offset + ACTION_BTN_WIDTH + 5 + 5, Screen.height - ORDERS_BAR_HEIGHT + 0 * LINE_HEIGHT + 5 + ACTION_BTN_HEIGHT * 2, ACTION_BTN_WIDTH, ACTION_BTN_HEIGHT), "Clear All Cam"))
-        {
-            ClearAllCameras();
-        }
-        //clear all cameras-------------
-    }
-
-    public void ShowAllCameras()
-    {
-        initialCams = false;
-        Drone[] allEntities = this.player.sceneManager.getAllDrones();
-        foreach (Drone drone in allEntities)
-        {
-            Camera cam = drone.getCameraFront();
-            if (cam.depth != Drone.PIP_DEPTH_ACTIVE)
-            {
-                cam.rect = ResourceManager.getInstance().getAvailableCameraPosition(cam);
-                cam.depth = Drone.PIP_DEPTH_ACTIVE;
-            }
-        }
-    }
-
-    public void ClearAllCameras()
-    {
-        Drone[] allEntities = this.player.sceneManager.getAllDrones();
-        foreach (Drone drone in allEntities)
-        {
-            Camera cam = drone.getCameraFront();
-            cam.depth = -1;
         }
     }
 
@@ -376,7 +325,7 @@ public class HUD : MonoBehaviour {
 	}
 
 	private void SwitchDayNight(){
-		sun.SetActive(this.dayNightToggle);
+		//sun.SetActive(this.dayNightToggle);
 	}
 
 	//Render Selection

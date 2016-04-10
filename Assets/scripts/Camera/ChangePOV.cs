@@ -15,17 +15,13 @@ public class ChangePOV : MonoBehaviour {
     public int worldSimulationSpeedVar;
         // Use this for initialization
     void Start () {
-        player = GetComponent<Player> ();
-		camMain = Camera.main;
-		this.camMainPosition=Vector3.zero;
-		this.camMainRotation=this.inValidQuaternion;
-        sceneManager = GameObject.FindWithTag("SceneManager").GetComponent<SceneManager>();
+        player = GetComponent<Player>();
+        camMain = Camera.main;
         hud = player.GetComponentInChildren<HUD>();
-        worldSimulationSpeedVar = 1;
-
     }
 
-	public void switchCamera(RTS.CameraType type){
+
+    public void switchCamera(RTS.CameraType type){
 		if (type == RTS.CameraType.Camera_Main) {
 			if (activeCamera != null) {
 				this.activeCamera = null;
@@ -65,105 +61,17 @@ public class ChangePOV : MonoBehaviour {
             this.copyCameraPosition(camMain, this.activeCamera);
 
         
-        MainCameraMove();               //short-cut-key AWSD for RTS camera movement
-        DroneShortCutKey();             //0-9 select first 10 in n.
-        ShortCutKeyShowAllCameras();
-        ShortCutKeyClearAllCameras();
-        BlurSelectedDronesCameras();
-        ClearAllDronesBlurCameras();    
-        WorldSimulationSpeedFunc();     // keypad + for simulation speed up, - for simulation speed down
-        DroneDied();                    // make drone die; for test;
     }
 
-    private void DroneShortCutKey()
-    {
-        int droneCounter = sceneManager.getAllDrones().Length;
-        if (Input.GetKeyDown(KeyCode.Alpha0))
-        {
-            if (droneCounter != 0)
-            {
-                player.setSelectedObject(sceneManager.getAllDrones()[0]);
-            }
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            if (droneCounter > 1)
-            {
-                player.setSelectedObject(sceneManager.getAllDrones()[1]);
-            }
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            if (droneCounter > 2)
-            {
-                player.setSelectedObject(sceneManager.getAllDrones()[2]);
-            }
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            if (droneCounter > 3)
-            {
-                player.setSelectedObject(sceneManager.getAllDrones()[3]);
-            }
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            if (droneCounter > 4)
-            {
-                player.setSelectedObject(sceneManager.getAllDrones()[4]);
-            }
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha5))
-        {
-            if (droneCounter > 5)
-            {
-                player.setSelectedObject(sceneManager.getAllDrones()[5]);
-            }
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha6))
-        {
-            if (droneCounter > 6)
-            {
-                player.setSelectedObject(sceneManager.getAllDrones()[6]);
-            }
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha7))
-        {
-            if (droneCounter > 7)
-            {
-                player.setSelectedObject(sceneManager.getAllDrones()[7]);
-            }
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha8))
-        {
-            if (droneCounter > 8)
-            {
-                player.setSelectedObject(sceneManager.getAllDrones()[8]);
-            }
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha9))
-        {
-            if (droneCounter > 9)
-            {
-                player.setSelectedObject(sceneManager.getAllDrones()[9]);
-            }
-        }
-    }
+
 
     private void ShortCutKeyShowAllCameras()
     {
-        if(Input.GetKeyDown(KeyCode.F5))
-        {
-            hud.ShowAllCameras();
-        }
     }
 
     private void ShortCutKeyClearAllCameras()
     {
-        if (Input.GetKeyDown(KeyCode.F6))
-        {
-            hud.ClearAllCameras();
-        }
+
     }
 
     private void BlurSelectedDronesCameras()
@@ -249,8 +157,8 @@ public class ChangePOV : MonoBehaviour {
         Camera.main.orthographicSize -= ResourceManager.ScrollSpeed * Input.GetAxis("Mouse ScrollWheel");
         float minCameraSize = ResourceManager.MinCameraSize;
         float maxCameraSize = ResourceManager.MaxCameraSize;
-        Camera.main.orthographicSize = Mathf.Clamp(Camera.main.orthographicSize, minCameraSize, maxCameraSize);
-        //movement += Camera.main.transform.forward * ResourceManager.ScrollSpeed * Input.GetAxis("Mouse ScrollWheel");;
+        //Camera.main.orthographicSize = Mathf.Clamp(Camera.main.orthographicSize, minCameraSize, maxCameraSize);
+        movement += Camera.main.transform.forward * ResourceManager.ScrollSpeed * Input.GetAxis("Mouse ScrollWheel");;
 
         //calculate desired camera position based on received input
         Vector3 origin = Camera.main.transform.position;

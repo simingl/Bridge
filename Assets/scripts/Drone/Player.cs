@@ -12,10 +12,10 @@ public class Player : MonoBehaviour {
 	public List <WorldObject> selectedObjects;
 
 	public AudioManager audioManager;
-	public ChangePOV changePOV;
-	public SceneManager sceneManager;
-	public StationManager stationManager;
-	public ConfigManager configManager;
+    public ChangePOV changePOV;
+    public SceneManager sceneManager;
+    public StationManager stationManager;
+    public ConfigManager configManager;
 
 	// Use this for initialization
 	void Start () {
@@ -32,7 +32,7 @@ public class Player : MonoBehaviour {
 	public void addSelectedObject(WorldObject obj){
 		if (!selectedObjects.Contains (obj)) {
 			selectedObjects.Add (obj);
-	//		this.audioManager.playUnitSelectSound();
+			this.audioManager.playUnitSelectSound();
 		}
 
 		if (obj == this.selectedObjects [0] && obj is Drone) {
@@ -101,6 +101,7 @@ public class Player : MonoBehaviour {
 	}
 
 	public bool isPIPActive(){
-		return this.changePOV.activeCamera == null && this.getSelectedObjects ().Count > 0;
+        return true;
+		//return this.changePOV.activeCamera == null && this.getSelectedObjects ().Count > 0;
 	}
 }

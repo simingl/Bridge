@@ -33,14 +33,14 @@ public class SceneManager : MonoBehaviour {
 		InitialScene ();
         //Drone drone = (Drone)getAllDrones()[0];
         //drone.showPIPCameraFront();
-        player.setSelectedObject(getAllDrones()[0]);
+        //player.setSelectedObject(getAllDrones()[0]);
     }
 
 	void InitialScene (){
-		initialDroneSpawnLocation ();
-		initialHelicopterSpawnLocation ();
-		initialPeopleSpawnLocation ();
-		initialCarSpawnLocation ();
+		//initialDroneSpawnLocation ();
+		//initialHelicopterSpawnLocation ();
+		//initialPeopleSpawnLocation ();
+		//initialCarSpawnLocation ();
 	}
 
 	private void initialDroneSpawnLocation(){

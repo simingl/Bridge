@@ -14,7 +14,7 @@ namespace RTS {
 		private XmlDocument doc = new XmlDocument();
 		private ConfigManager(){
 			if (settings == null) {
-				//settings = SettingsContainer.readData ();
+				settings = SettingsContainer.readData ();
 				//settings.writeData();
 			}
 		}
