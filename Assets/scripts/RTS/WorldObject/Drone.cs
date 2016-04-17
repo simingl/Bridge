@@ -414,13 +414,16 @@ public class Drone : WorldObject {
 			//transform.position = newPos;
 		}
 
+        
 		//move forward
-		if (this.routePointsQueue.Count <= 0 && speed > 0) {
-			this.currentStatus = STATUS.MOVING;
-			transform.Translate (0, 0, speed * Time.deltaTime);
-			this.CalculateBounds ();
-		}	
-	}
+		//if (this.routePointsQueue.Count <= 0 && speed > 0) {
+		//	this.currentStatus = STATUS.MOVING;
+		//	transform.Translate (0, 0, speed * Time.deltaTime);
+		//	this.CalculateBounds ();
+		//}
+
+        this.transform.Translate(Input.GetAxis("Vertical")* Vector3.forward * Time.deltaTime);
+    }
 
 	public void StopMove(){
 		base.StopMove ();

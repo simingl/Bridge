@@ -36,7 +36,7 @@ public class WorldObject : MonoBehaviour {
     protected virtual void Start () {
 		this._isSelectable = true;
 		player = GameObject.FindGameObjectWithTag ("Player").GetComponent<Player>();
-		this.playingArea = player.hud.GetPlayingArea ();
+		//this.playingArea = player.hud.GetPlayingArea ();
 	}
 	
 	protected virtual void Update () {
@@ -89,7 +89,8 @@ public class WorldObject : MonoBehaviour {
 	}
 
 	public bool isSelected(){
-		return player.isSelected (this);
+        return false;
+		//return player.isSelected (this);
 	}
 
 	public void centerMainCamera(){

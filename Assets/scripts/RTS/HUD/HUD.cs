@@ -13,7 +13,7 @@ public class HUD : MonoBehaviour {
 	public Texture drone_cam_front, drone_cam_down;
 	public Button cellBtn; 
 	private const int RESOURCE_BAR_HEIGHT = 30;
-	private const int LINE_HEIGHT = 30;
+	private const int LINE_HEIGHT = 18;
 
 	private static int SELECT_BAR_BTN_HEIGHT = 30, SELECT_BAR_BTN_WIDTH = 60;
 	private static int ACTION_BTN_WIDTH = 76 + 16, ACTION_BTN_HEIGHT = 30;
@@ -67,7 +67,7 @@ public class HUD : MonoBehaviour {
 		SELECTION_BAR_HEIGHT = (int)(0.16 * HEIGHT);
 		SELECTION_BAR_WIDTH = (int)(0.29*WIDTH);
 		ORDERS_BAR_WIDTH = (int)(0.151*WIDTH);
-		ORDERS_BAR_HEIGHT = (int)(0.2*HEIGHT);
+		ORDERS_BAR_HEIGHT = (int)(0.15*HEIGHT);
 		INFO_BAR_HEIGHT = ORDERS_BAR_HEIGHT;
 		INFO_BAR_WIDHT = (int)(0.20*WIDTH) ;
 
