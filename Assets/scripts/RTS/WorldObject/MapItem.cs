@@ -14,7 +14,7 @@ public class MapItem : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		if (this.transform.parent != null) {
-			Transform mit = this.transform.FindChild (MAP_ITEM_NAME);
+			Transform mit = this.transform.Find (MAP_ITEM_NAME);
 			if(mit != null){
 				GameObject mi = mit.gameObject;
 				mit.parent = null;

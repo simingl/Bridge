@@ -10,208 +10,102 @@ Material:
   m_Shader: {fileID: 4800000, guid: 17b27c10e5c526741be3ea68863968fb, type: 3}
   m_ShaderKeywords: _ENABLEREFLECTIONS_ON
   m_LightmapFlags: 5
+  m_EnableInstancingVariants: 0
   m_CustomRenderQueue: 3000
   stringTagMap: {}
+  disabledShaderPasses: []
   m_SavedProperties:
-    serializedVersion: 2
+    serializedVersion: 3
     m_TexEnvs:
-    - first:
-        name: _BumpMap
-      second:
+    - _BumpMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - first:
-        name: _DetailAlbedoMap
-      second:
+    - _DetailAlbedoMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - first:
-        name: _DetailMask
-      second:
+    - _DetailMask:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - first:
-        name: _DetailNormalMap
-      second:
+    - _DetailNormalMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - first:
-        name: _EmissionMap
-      second:
+    - _EmissionMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - first:
-        name: _FoamTexture
-      second:
+    - _FoamTexture:
         m_Texture: {fileID: 2800000, guid: 199d83fd2aca7214481411272c61f368, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - first:
-        name: _MainTex
-      second:
+    - _MainTex:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - first:
-        name: _MetallicGlossMap
-      second:
+    - _MetallicGlossMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - first:
-        name: _NormalTexture
-      second:
+    - _NormalTexture:
         m_Texture: {fileID: 2800000, guid: 1b785ba7e757439478e6db434e0d3dd2, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - first:
-        name: _OcclusionMap
-      second:
+    - _OcclusionMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - first:
-        name: _ParallaxMap
-      second:
+    - _ParallaxMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - first:
-        name: _ReflectionTex
-      second:
+    - _ReflectionTex:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - first:
-        name: _BumpScale
-      second: 1
-    - first:
-        name: _Cutoff
-      second: 0.5
-    - first:
-        name: _Density
-      second: 1.8
-    - first:
-        name: _DepthTransparency
-      second: 5
-    - first:
-        name: _DetailNormalMapScale
-      second: 1
-    - first:
-        name: _Distortion
-      second: 0.34
-    - first:
-        name: _DstBlend
-      second: 0
-    - first:
-        name: _EnableReflections
-      second: 0.6
-    - first:
-        name: _Fade
-      second: 2.2
-    - first:
-        name: _FoamBlend
-      second: 1
-    - first:
-        name: _FoamContrast
-      second: 0.245
-    - first:
-        name: _FoamIntensity
-      second: 12.65
-    - first:
-        name: _FoamSpeed
-      second: -100
-    - first:
-        name: _FoamTiling
-      second: 10
-    - first:
-        name: _FoamVisibility
-      second: 0.3
-    - first:
-        name: _FullTransparency
-      second: 0
-    - first:
-        name: _Gloss
-      second: 0.9
-    - first:
-        name: _Glossiness
-      second: 0.5
-    - first:
-        name: _LightWrapping
-      second: 1
-    - first:
-        name: _Metallic
-      second: 0
-    - first:
-        name: _Mode
-      second: 0
-    - first:
-        name: _NormalTiling
-      second: 2
-    - first:
-        name: _OcclusionStrength
-      second: 1
-    - first:
-        name: _Parallax
-      second: 0.02
-    - first:
-        name: _ReflectionIntensity
-      second: 0.499
-    - first:
-        name: _Refraction
-      second: 0.478
-    - first:
-        name: _ShoreFade
-      second: 0.56
-    - first:
-        name: _ShoreTransparency
-      second: 0.5
-    - first:
-        name: _Specular
-      second: 1
-    - first:
-        name: _SrcBlend
-      second: 1
-    - first:
-        name: _UVSec
-      second: 0
-    - first:
-        name: _UnderwaterMode
-      second: 0
-    - first:
-        name: _UnderwaterTranspDist
-      second: 13.56
-    - first:
-        name: _UnderwaterTranspFalloff
-      second: 0.78
-    - first:
-        name: _WaveSpeed
-      second: -40
-    - first:
-        name: _ZWrite
-      second: 1
+    - _BumpScale: 1
+    - _Cutoff: 0.5
+    - _Density: 1.8
+    - _DepthTransparency: 5
+    - _DetailNormalMapScale: 1
+    - _Distortion: 0.34
+    - _DstBlend: 0
+    - _EnableReflections: 0.6
+    - _Fade: 2.2
+    - _FoamBlend: 1
+    - _FoamContrast: 0.245
+    - _FoamIntensity: 12.65
+    - _FoamSpeed: -100
+    - _FoamTiling: 10
+    - _FoamVisibility: 0.3
+    - _FullTransparency: 0
+    - _Gloss: 0.9
+    - _Glossiness: 0.5
+    - _LightWrapping: 1
+    - _Metallic: 0
+    - _Mode: 0
+    - _NormalTiling: 2
+    - _OcclusionStrength: 1
+    - _Parallax: 0.02
+    - _ReflectionIntensity: 0.499
+    - _Refraction: 0.478
+    - _ShoreFade: 0.56
+    - _ShoreTransparency: 0.5
+    - _Specular: 1
+    - _SrcBlend: 1
+    - _UVSec: 0
+    - _UnderwaterMode: 0
+    - _UnderwaterTranspDist: 13.56
+    - _UnderwaterTranspFalloff: 0.78
+    - _WaveSpeed: -40
+    - _ZWrite: 1
     m_Colors:
-    - first:
-        name: _Color
-      second: {r: 1, g: 1, b: 1, a: 1}
-    - first:
-        name: _DeepWaterColor
-      second: {r: 0.29974046, g: 0.4729448, b: 0.61764705, a: 1}
-    - first:
-        name: _EmissionColor
-      second: {r: 0, g: 0, b: 0, a: 1}
-    - first:
-        name: _FoamColor
-      second: {r: 0.3602941, g: 0.3655925, b: 0.3655925, a: 1}
-    - first:
-        name: _MainColor
-      second: {r: 0.53676474, g: 0.9424949, b: 1, a: 1}
-    - first:
-        name: _SpecularColor
-      second: {r: 0.77205884, g: 0.77205884, b: 0.77205884, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _DeepWaterColor: {r: 0.29974046, g: 0.4729448, b: 0.61764705, a: 1}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _FoamColor: {r: 0.3602941, g: 0.3655925, b: 0.3655925, a: 1}
+    - _MainColor: {r: 0.53676474, g: 0.9424949, b: 1, a: 1}
+    - _SpecularColor: {r: 0.77205884, g: 0.77205884, b: 0.77205884, a: 1}

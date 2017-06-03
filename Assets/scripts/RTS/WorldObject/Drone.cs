@@ -117,7 +117,7 @@ public class Drone : WorldObject {
         //setup the destination mark
         //destinationMark = this.transform.FindChild("DestinationMark");
 
-        this.camera_front = (Camera)(this.transform.FindChild("cam_1st").gameObject).GetComponent<Camera>();
+        this.camera_front = (Camera)(this.transform.Find("cam_1st").gameObject).GetComponent<Camera>();
         //this.camera_down = (Camera)(this.transform.FindChild("camera_hover_view").gameObject).GetComponent<Camera>();
         this.camera_front.depth = PIP_DEPTH_DEACTIVE;
         //this.camera_down.depth = PIP_DEPTH_DEACTIVE;
@@ -132,7 +132,7 @@ public class Drone : WorldObject {
         base.Start();
         //this.selectedCircle.SetActive(false);
         //this.droneNumberText.text = "No. " + this.droneNumber;
-        transform.FindChild("mesh").FindChild("group_top").GetComponent<Renderer>().material.color = color;
+        transform.Find("mesh").Find("group_top").GetComponent<Renderer>().material.color = color;
         //droneNumberText.color = color;
         //transform.FindChild("arrow32").FindChild("Mesh_").GetComponent<Renderer>().material.color = color;
         //hold routLinePoints prefab in an object;
@@ -643,7 +643,7 @@ public class Drone : WorldObject {
 
 	public void Dieing(){
 		this.currentStatus = STATUS.DEAD;
-        transform.FindChild("arrow32").FindChild("Mesh_").GetComponent<Renderer>().material.color = Color.gray;
+        transform.Find("arrow32").Find("Mesh_").GetComponent<Renderer>().material.color = Color.gray;
         clearDestination();
         this.setColor (Color.gray);
 		this._isSelectable = false;
@@ -653,7 +653,7 @@ public class Drone : WorldObject {
 	public void setColor(Color col){
 		this.color = col;
 		//find the top mesh and render it
-		transform.FindChild ("mesh").FindChild ("group_top").GetComponent<Renderer>().material.color = this.color;
+		transform.Find ("mesh").Find ("group_top").GetComponent<Renderer>().material.color = this.color;
 	}
      
 	public void addWayPoint(Vector3 point){

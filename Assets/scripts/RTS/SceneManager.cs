@@ -64,7 +64,7 @@ public class SceneManager : MonoBehaviour {
 	}
 
 	private void initialHelicopterSpawnLocation(){
-		Transform sceneHelicopterContainer = gameObject.transform.FindChild ("Helicopters");
+		Transform sceneHelicopterContainer = gameObject.transform.Find ("Helicopters");
 		this.sceneHelicopterCount = configManager.getSceneHelicopterCount ();
 		GameObject[] heliSpawnLocation = GameObject.FindGameObjectsWithTag("HelicopterSpawnLocation");
 		int spawnIndex = Random.Range (0, heliSpawnLocation.Length - 1);;
@@ -79,7 +79,7 @@ public class SceneManager : MonoBehaviour {
 	}
 
 	private void initialPeopleSpawnLocation(){
-		Transform scenePeopleContainer = gameObject.transform.FindChild ("People");
+		Transform scenePeopleContainer = gameObject.transform.Find ("People");
 		this.scenePeopleCount = configManager.getScenePeopleCount ();
 		GameObject[] peopleSpawnLocations = GameObject.FindGameObjectsWithTag("Waypoint");
 		int spawnIndex = Random.Range (0, peopleSpawnLocations.Length - 1);;
@@ -94,7 +94,7 @@ public class SceneManager : MonoBehaviour {
 	}
 
 	private void initialCarSpawnLocation(){
-		Transform sceneCarContainer = gameObject.transform.FindChild ("Cars");
+		Transform sceneCarContainer = gameObject.transform.Find ("Cars");
 		this.sceneCarCount = configManager.getSceneCarCount ();
 		GameObject[] carSpawnLocations = GameObject.FindGameObjectsWithTag("Waypoint");
 		int spawnIndex = Random.Range (0, carSpawnLocations.Length - 1);;
