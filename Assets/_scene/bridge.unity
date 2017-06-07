@@ -2217,6 +2217,7 @@ GameObject:
   - component: {fileID: 692358402}
   - component: {fileID: 692358403}
   - component: {fileID: 692358406}
+  - component: {fileID: 692358404}
   m_Layer: 0
   m_Name: HUD
   m_TagString: Untagged
@@ -2265,6 +2266,17 @@ MonoBehaviour:
   cellBtn: {fileID: 0}
   dayNightToggle: 1
   selectionHighlight: {fileID: 2800000, guid: 55a30ef79052b754facdcd2a706bbdbf, type: 3}
+--- !u!114 &692358404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 692358401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e04361908e03d140b8b7f14ab3b863d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!222 &692358406
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4163,7 +4175,6 @@ GameObject:
   - component: {fileID: 2045896820}
   - component: {fileID: 2045896822}
   - component: {fileID: 2045896823}
-  - component: {fileID: 2045896824}
   m_Layer: 9
   m_Name: drone
   m_TagString: Player
@@ -4306,17 +4317,6 @@ MonoBehaviour:
   emptyGameObject: {fileID: 0}
   droneNumber: 0
   droneNumberText: {fileID: 0}
---- !u!114 &2045896824
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2045896815}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e04361908e03d140b8b7f14ab3b863d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2054500754
 GameObject:
   m_ObjectHideFlags: 0

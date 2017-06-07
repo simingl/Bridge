@@ -12,6 +12,8 @@ public class HUD : MonoBehaviour {
 
 	public Texture drone_cam_front, drone_cam_down;
 	public Button cellBtn; 
+
+    
 	private const int RESOURCE_BAR_HEIGHT = 30;
 	private const int LINE_HEIGHT = 18;
 
@@ -48,8 +50,8 @@ public class HUD : MonoBehaviour {
 	//private GameObject sun;
     private bool initialCams;
 	//For selection rendering
-	public Texture2D selectionHighlight = null;
-	public static Rect selection = new Rect(0,0,0,0);
+	public static Texture2D selectionHighlight = null;
+    public static Rect selection = new Rect(0,0,0,0);
 	private Vector3 startClick = -Vector3.one;
 
 
@@ -58,7 +60,9 @@ public class HUD : MonoBehaviour {
 
 
 	void Start () {
-		int WIDTH = Screen.width;
+        selectionHighlight = new Texture2D(128, 128);
+
+        int WIDTH = Screen.width;
 		int HEIGHT = Screen.height;
         initialCams = true;
 
@@ -291,7 +295,22 @@ public class HUD : MonoBehaviour {
 
     }
 
-	private void DrawOrdersBar() {
+    
+    private void DrawOrdersBar()
+    {
+        int offset = MINIMAP_WIDTH + INFO_BAR_WIDHT;
+
+        GUI.BeginGroup(new Rect(0, Screen.height - ORDERS_BAR_HEIGHT, Screen.width * 0.8f, ORDERS_BAR_HEIGHT));
+        GUI.Box(new Rect(offset, 0, ORDERS_BAR_WIDTH, ORDERS_BAR_HEIGHT), "");
+        GUI.EndGroup();
+        Rect roscam = new Rect(offset, Screen.height - ORDERS_BAR_HEIGHT, ORDERS_BAR_WIDTH, ORDERS_BAR_HEIGHT);
+
+        if (selectionHighlight != null) {
+            GUI.DrawTexture(roscam, selectionHighlight);
+        }        
+    }
+
+    private void DrawOrdersBar_bak() {
         int offset = MINIMAP_WIDTH  + INFO_BAR_WIDHT;
 
         GUI.color = Color.white;
