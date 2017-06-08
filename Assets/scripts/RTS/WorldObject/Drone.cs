@@ -423,6 +423,7 @@ public class Drone : WorldObject {
 		//}
 
         this.transform.Translate(Input.GetAxis("Vertical")* Vector3.forward * Time.deltaTime);
+        //ROSManager.getInstance().RemoteControl();
     }
 
 	public void StopMove(){

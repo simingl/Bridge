@@ -28,8 +28,8 @@ public class TurtlesimViewer : MonoBehaviour  {
 		_useJoysticks = Input.GetJoystickNames ().Length > 0;
 		ros = new ROSBridgeWebSocketConnection ("ws://134.197.87.18", 9090);
 		//ros.AddSubscriber (typeof(Turtle1ColorSensor));
-		ros.AddSubscriber (typeof(Turtle1ImageSensor));
-		ros.AddPublisher (typeof(Turtle1Teleop));
+		ros.AddSubscriber (typeof(RobotImageSensor));
+		ros.AddPublisher (typeof(RobotTeleop));
         //ros.AddServiceResponse (typeof(Turtle1ServiceResponse));
 		ros.Connect ();
 		//ros.CallService ("/turtle1/set_pen", "{\"off\": 0}");
@@ -60,9 +60,9 @@ public class TurtlesimViewer : MonoBehaviour  {
 		float linear = _dy * 0.5f;
 		float angular = -_dx * 0.2f;
 
-		//TwistMsg msg = new TwistMsg (new Vector3Msg(0.1, 0.2, 0.3), new Vector3Msg(-0.1, -0.2, -0.3));
+		TwistMsg msg = new TwistMsg (new Vector3Msg(0.1, 0.2, 0.3), new Vector3Msg(-0.1, -0.2, -0.3));
 
-		//ros.Publish (Turtle1Teleop.GetMessageTopic (), msg);
+		ros.Publish (RobotTeleop.GetMessageTopic (), msg);
 
 		if (Input.GetKeyDown (KeyCode.T)) {
 			if (lineOn)

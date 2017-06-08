@@ -2265,7 +2265,6 @@ MonoBehaviour:
   drone_cam_down: {fileID: 2800000, guid: dcdfa89d2751bf841a5bb6db57852637, type: 3}
   cellBtn: {fileID: 0}
   dayNightToggle: 1
-  selectionHighlight: {fileID: 2800000, guid: 55a30ef79052b754facdcd2a706bbdbf, type: 3}
 --- !u!114 &692358404
 MonoBehaviour:
   m_ObjectHideFlags: 0

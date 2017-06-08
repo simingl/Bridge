@@ -17,7 +17,7 @@ using UnityEngine;
  * @version 3.0
  **/
 
-public class Turtle1ImageSensor : ROSBridgeSubscriber {
+public class RobotImageSensor : ROSBridgeSubscriber {
 	
 	public new static string GetMessageTopic() {
 		return "/iRobot/camera/image_raw/compressed";

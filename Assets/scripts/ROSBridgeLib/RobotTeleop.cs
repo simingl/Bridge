@@ -14,7 +14,7 @@ using UnityEngine;
  * @version 3.0
  **/
 
-public class Turtle1Teleop: ROSBridgePublisher {
+public class RobotTeleop: ROSBridgePublisher {
 	
 	public static string GetMessageTopic() {
 		return "/cmd_vel";
