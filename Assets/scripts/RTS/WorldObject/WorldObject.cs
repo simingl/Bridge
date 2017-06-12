@@ -46,7 +46,7 @@ public class WorldObject : MonoBehaviour {
 
 
     protected virtual void OnGUI() {
-		if (this.isSelected() && this.player.changePOV.activeCamera == null) {
+		if (this.isSelected()) {
 			DrawSelection ();
 		}
 	}

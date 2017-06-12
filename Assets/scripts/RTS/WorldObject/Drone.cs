@@ -98,29 +98,14 @@ public class Drone : WorldObject {
             case 4:
                 this.color = Color.green;
                 break;
-            //case 5:
-            //    this.color = Color.gray;
-                //break;
             default:
                 this.color = Color.cyan;                
                 break;                
         }
         
-        //Create a battery bar from the prefab
-        //batterySlider = (Slider)GameObject.Instantiate(batterySliderfabs, new Vector3(-10000f, -10000f, -10000f), transform.localRotation);
-        //batterySlider.transform.SetParent(canvas.transform);
-        //batterySlider.transform.parent = emptyGameObject.transform;
-
-        //batterySlider.transform.localScale = Vector3.one;
-        //batterySlider.gameObject.SetActive(false);
-
-        //setup the destination mark
-        //destinationMark = this.transform.FindChild("DestinationMark");
 
         this.camera_front = (Camera)(this.transform.Find("cam_1st").gameObject).GetComponent<Camera>();
-        //this.camera_down = (Camera)(this.transform.FindChild("camera_hover_view").gameObject).GetComponent<Camera>();
         this.camera_front.depth = PIP_DEPTH_DEACTIVE;
-        //this.camera_down.depth = PIP_DEPTH_DEACTIVE;
     }
 
     public void FrontCameraBlur()
@@ -130,72 +115,14 @@ public class Drone : WorldObject {
 
     protected override void Start() {
         base.Start();
-        //this.selectedCircle.SetActive(false);
-        //this.droneNumberText.text = "No. " + this.droneNumber;
         transform.Find("mesh").Find("group_top").GetComponent<Renderer>().material.color = color;
-        //droneNumberText.color = color;
-        //transform.FindChild("arrow32").FindChild("Mesh_").GetComponent<Renderer>().material.color = color;
-        //hold routLinePoints prefab in an object;
-        //		routLinePointsSelect = GameObject.FindGameObjectsWithTag("RouteLinePoint"); 	
-
-        //find the top mesh and render it
         this.setColor(color);
-
-        //setup the line from object to the ground
-        //lineRaycast = this.GetComponent<LineRenderer>();
-        //lineRaycast.useWorldSpace = true;
-        
-
-        this.malFunction ();
     }
 
     protected override void Update() {
         base.Update();
-        //if (this.isSelected() == true)
-        //{
-        //    this.selectedCircle.SetActive(true);
-        //}
-        //else
-        //{
-        //    this.selectedCircle.SetActive(false);
-        //}
-            //select an object------
-            //		if (Input.GetMouseButtonDown(0))
-            //		{
-            //			RaycastHit hitInfo = new RaycastHit();
-            ////			if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hitInfo) && 
-            ////				hitInfo.transform.tag == "RouteLinePoint"
-            ////				)
-            //			if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hitInfo) && hitInfo.transform.tag == "RouteLinePoint")
-            //			{
-            //				print ("It's working");
-            //			}
-            //		}
-            //-------------
-            //for (int i = 0; i < ConfigManager.getInstance().getSceneDroneCount(); ++i)
-            //{
-            //    if (this.droneNumber == mySceneManager.getAllDrones()[i].droneNumber)
-            //        ++this.droneNumber;
-            //}
-            //if (this.isSelected())
-            //{
-            //    //player.getSelectedObjects()[0].isSelected()
-            //    //Debug.Log(this.transform.position);
-            //    getDroneArea();
-            //}
             if (this.currentStatus == STATUS.DEAD)
             return;
-
-        //if (Input.GetMouseButtonUp(0) && !EventSystem.current.IsPointerOverGameObject() && HUD.selection.width * HUD.selection.height > 10) {
-        //    Vector3 camPos = Camera.main.WorldToScreenPoint(transform.position);
-        //    camPos.y = Screen.height - camPos.y;
-        //    if (HUD.selection.Contains(camPos)) {
-        //        this.player.addSelectedObject(this);
-        //    }
-        //    else {
-        //        this.player.removeSelectedObject(this);   //remove if drone is not in the mouseDrag area;
-        //    }
-        //}
 
         this.HandleKeyboardControl();
         //this.drawRaycastLine ();
@@ -423,7 +350,11 @@ public class Drone : WorldObject {
 		//}
 
         this.transform.Translate(Input.GetAxis("Vertical")* Vector3.forward * Time.deltaTime);
-        //ROSManager.getInstance().RemoteControl();
+        float _dx = Input.GetAxis("Horizontal");
+        float _dy = Input.GetAxis("Vertical");
+        float linear = _dy * 0.5f;
+        float angular = -_dx * 0.2f;
+        ROSManager.getInstance().RemoteControl(new Vector3(linear, 0.0f, 0.0f), new Vector3(0.0f, 0.0f, angular));
     }
 
 	public void StopMove(){
@@ -612,11 +543,6 @@ public class Drone : WorldObject {
 		if (sc != null) {
 			this.charger = sc;
 			SpawnRoutePoints(sc.transform.position);
-//			GameObject colon = (GameObject)Instantiate(routePoints,sc.transform.position, new Quaternion(0,0,0,1));
-//			colon.GetComponent<Renderer>().material.color = color;
-//			colon.layer = ResourceManager.LayerMainCamerea;
-//			this.routePointsQueue.Enqueue(sc.transform.position);
-//			this.routePointsQueue.Enqueue(colon);
 			this.currentTask = TASK.RECHARGING;
 			this.currentStatus = STATUS.TAKEOFF;
 			sc.Occupy(this);
@@ -669,36 +595,5 @@ public class Drone : WorldObject {
 		}
 	}
 
-	public Vector3 getCurrentDestination(){
-		if (this.routePointsQueue.Count > 0) {
-			return this.routePointsQueue.Peek ().transform.position;
-		} else {
-			return ResourceManager.InvalidPosition;
-		}
-	}
 
-	private void malFunction(){
-		Random random = new Random ();
-		int randInt = Random.Range (1, ConfigManager.getInstance ().getSceneDroneCount ());
-		if(randInt == 2) {
-			this.malFunctionCameraEnable ();
-		} else if (randInt == 3){
-			this.malFunctionSpeed();
-		}
-	}
-
-	public void malFunctionCameraEnable(){
-		Blur blur = camera_front.GetComponent<Blur>();
-		//blur.enableFunc();
-	}
-
-	private void malFunctionSpeed(){
-		this.maxSpeed /= 2;
-	}
-
-    public void malFunctionCameraClear()
-    {
-        Blur blur = camera_front.GetComponent<Blur>();
-        //blur.disableFunc();
-    }
 }

@@ -6,23 +6,20 @@ using ROSBridgeLib;
 using ROSBridgeLib.geometry_msgs;
 
 public class ROSManager{
-	private static ROSManager instance = null;
+	private static ROSManager instance = new ROSManager();
 
     private ROSBridgeWebSocketConnection ros = null;
     private Boolean lineOn;
 
     public static ROSManager getInstance(){
-		if (instance == null) {
-			instance = new ROSManager();
-		}
 		return instance;
 	}
 
 	private ROSManager(){
-		init ();
+        ROSConnect();
 	}
 
-    private void init() {
+    public void ROSConnect() {
         ros = new ROSBridgeWebSocketConnection("ws://134.197.87.18", 9090);
         ros.AddSubscriber(typeof(RobotImageSensor));
         ros.AddPublisher(typeof(RobotTeleop));
@@ -30,9 +27,11 @@ public class ROSManager{
         lineOn = true;
     }
 
-    public void RemoteControl() { 
-    //public void RemoteControl(Vector3Msg linear, Vector3Msg angular) {
-        TwistMsg msg = new TwistMsg (new Vector3Msg(0.1, 0.2, 0.3), new Vector3Msg(-0.1, -0.2, -0.3));
+    public void ROSRender() {
+        this.ros.Render();
+    }
+    public void RemoteControl(Vector3 linear, Vector3 angular) { 
+        TwistMsg msg = new TwistMsg (new Vector3Msg(linear.x, linear.y, linear.z), new Vector3Msg(angular.x, angular.y, angular.z));
         ros.Publish (RobotTeleop.GetMessageTopic (), msg);
     }
 

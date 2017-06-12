@@ -12,10 +12,10 @@ public class Player : MonoBehaviour {
 	public List <WorldObject> selectedObjects;
 
 	public AudioManager audioManager;
-    public ChangePOV changePOV;
     public SceneManager sceneManager;
     public StationManager stationManager;
     public ConfigManager configManager;
+    private ROSManager rosManager;
 
 	// Use this for initialization
 	void Start () {
@@ -23,14 +23,18 @@ public class Player : MonoBehaviour {
 
 		selectedObjects = new List<WorldObject> ();
 		audioManager = this.GetComponent<AudioManager> ();
-		changePOV = this.GetComponent<ChangePOV> ();
 		sceneManager = GameObject.FindObjectOfType<SceneManager> ();
 		stationManager = GameObject.FindObjectOfType<StationManager> ();
 
 		configManager = ConfigManager.getInstance();
+        rosManager = ROSManager.getInstance();
 	}
 
-	public void addSelectedObject(WorldObject obj){
+    void Update() {
+        rosManager.ROSRender();
+    }
+
+    public void addSelectedObject(WorldObject obj){
 		if (!selectedObjects.Contains (obj)) {
 			selectedObjects.Add (obj);
 			this.audioManager.playUnitSelectSound();
@@ -97,12 +101,4 @@ public class Player : MonoBehaviour {
 		return new Vector3 (sumX / size, 0, sumZ / size);
 	}
 
-	public bool isSelected(WorldObject obj){
-		return selectedObjects.Contains (obj);
-	}
-
-	public bool isPIPActive(){
-        return true;
-		//return this.changePOV.activeCamera == null && this.getSelectedObjects ().Count > 0;
-	}
 }
