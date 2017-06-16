@@ -22,6 +22,7 @@ public class ROSManager{
     public void ROSConnect() {
         ros = new ROSBridgeWebSocketConnection("ws://134.197.87.18", 9090);
         ros.AddSubscriber(typeof(RobotImageSensor));
+        ros.AddSubscriber(typeof(DroneImageSensor));
         ros.AddPublisher(typeof(RobotTeleop));
         ros.Connect();
         lineOn = true;

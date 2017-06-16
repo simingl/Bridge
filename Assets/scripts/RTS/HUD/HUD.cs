@@ -51,6 +51,7 @@ public class HUD : MonoBehaviour {
     private bool initialCams;
 	//For selection rendering
 	public static Texture2D selectionHighlight = null;
+    public static Texture2D droneCamera = null;
     public static Rect selection = new Rect(0,0,0,0);
 	private Vector3 startClick = -Vector3.one;
 
@@ -61,6 +62,7 @@ public class HUD : MonoBehaviour {
 
 	void Start () {
         selectionHighlight = new Texture2D(128, 128);
+        droneCamera = new Texture2D(128,128);
 
         int WIDTH = Screen.width;
 		int HEIGHT = Screen.height;
@@ -71,7 +73,7 @@ public class HUD : MonoBehaviour {
 		SELECTION_BAR_HEIGHT = (int)(0.16 * HEIGHT);
 		SELECTION_BAR_WIDTH = (int)(0.29*WIDTH);
 		ORDERS_BAR_WIDTH = (int)(0.151*WIDTH);
-		ORDERS_BAR_HEIGHT = (int)(0.15*HEIGHT);
+        ORDERS_BAR_HEIGHT = ORDERS_BAR_WIDTH;// (int)(0.15*HEIGHT);
 		INFO_BAR_HEIGHT = ORDERS_BAR_HEIGHT;
 		INFO_BAR_WIDHT = (int)(0.20*WIDTH) ;
 
@@ -300,14 +302,18 @@ public class HUD : MonoBehaviour {
     {
         int offset = MINIMAP_WIDTH + INFO_BAR_WIDHT;
 
-        GUI.BeginGroup(new Rect(0, Screen.height - ORDERS_BAR_HEIGHT, Screen.width * 0.8f, ORDERS_BAR_HEIGHT));
-        GUI.Box(new Rect(offset, 0, ORDERS_BAR_WIDTH, ORDERS_BAR_HEIGHT), "");
+        GUI.BeginGroup(new Rect(0, Screen.height - ORDERS_BAR_HEIGHT, Screen.width * 0.8f, ORDERS_BAR_HEIGHT*2));
+        GUI.Box(new Rect(offset, 0, ORDERS_BAR_WIDTH, ORDERS_BAR_HEIGHT*2), "");
         GUI.EndGroup();
-        Rect roscam = new Rect(offset, Screen.height - ORDERS_BAR_HEIGHT, ORDERS_BAR_WIDTH, ORDERS_BAR_HEIGHT);
-
+        Rect ubdcam   = new Rect(offset, Screen.height - ORDERS_BAR_HEIGHT*2-5, ORDERS_BAR_WIDTH, ORDERS_BAR_HEIGHT);
+        Rect dronecam = new Rect(offset, Screen.height - ORDERS_BAR_HEIGHT, ORDERS_BAR_WIDTH, ORDERS_BAR_HEIGHT);
         if (selectionHighlight != null) {
-            GUI.DrawTexture(roscam, selectionHighlight);
-        }        
+            GUI.DrawTexture(ubdcam, selectionHighlight);
+        }
+        if (droneCamera != null)
+        {
+            GUI.DrawTexture(dronecam, droneCamera);
+        }
     }
 
     private void DrawOrdersBar_bak() {
